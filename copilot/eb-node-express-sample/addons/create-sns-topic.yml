@@ -1,3 +1,14 @@
+Parameters:
+  App:
+    Type: String
+    Description: Your application's name.
+  Env:
+    Type: String
+    Description: The environment name your service, job, or workflow is being deployed to.
+  Name:
+    Type: String
+    Description: The name of the service, job, or workflow being deployed
+
 Resources:
   NewSignupQueue: 
     Type: AWS::SQS::Queue
@@ -5,8 +16,7 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       Subscription:
-      - Endpoint:
-          Fn::GetOptionSetting: {DefaultValue: nobody@example.com, OptionName: NewSignupEmail}
+      - Endpoint: 'me@example.com'
         Protocol: email
       - Endpoint:
           Fn::GetAtt: [NewSignupQueue, Arn]
@@ -29,3 +39,8 @@ Resources:
         Version: '2008-10-17'
       Queues:
       - {Ref: NewSignupQueue}
+
+Outputs:
+  NewSignupTopic:
+    Description: "The name of sign up topic."
+    Value: !Ref NewSignupTopic

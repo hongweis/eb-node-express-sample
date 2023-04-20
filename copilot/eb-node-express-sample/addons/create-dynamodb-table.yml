@@ -1,0 +1,26 @@
+Parameters:
+  App:
+    Type: String
+    Description: Your application's name.
+  Env:
+    Type: String
+    Description: The environment name your service, job, or workflow is being deployed to.
+  Name:
+    Type: String
+    Description: The name of the service, job, or workflow being deployed
+
+Resources:
+  StartupSignupsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        HashKeyElement: {AttributeName: email, AttributeType: S}
+      ProvisionedThroughput: {ReadCapacityUnits: 1, WriteCapacityUnits: 1}
+
+Outputs:
+  StartupSignupsTable:
+    Description: "The name of staru up sign up  table."
+    Value: !Ref StartupSignupsTable
+  AwsRegion:
+    Description: "region name"
+    Value: !Ref AWS::Region
