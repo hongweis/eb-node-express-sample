@@ -40,6 +40,8 @@ if (cluster.isMaster) {
     app.set('views', __dirname + '/views');
     app.use(bodyParser.urlencoded({extended:false}));
 
+    app.use('/static', express.static('static'));
+
     app.get('/', function(req, res) {
         res.render('index', {
             static_path: 'static',
