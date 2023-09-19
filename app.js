@@ -94,6 +94,6 @@ if (cluster.isMaster) {
     const port = process.env.PORT || 3000;
 
     const server = app.listen(port, function () {
-        console.log('Server running at http://127.0.0.1:' + port + '/' + 'env variable: secret1:' + process.env.secret1);
+        console.log('Server running at http://127.0.0.1:' + port + '/' + 'env variable: secret1:' + process.env.secret1 + 'secret manager reference env:' + process.env.secret2);
     });
 }
